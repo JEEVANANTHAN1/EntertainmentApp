@@ -1,21 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Loader.scss';
 
-export const Loader = ({ onFinish, duration = 1850 }) => {
+export const Loader = ({ onFinish }) => {
   const [isFlying, setIsFlying] = useState(false);
   const [fadingBg, setFadingBg] = useState(false);
   const [flyTransform, setFlyTransform] = useState('');
   const logoRef = useRef(null);
 
   useEffect(() => {
-    // Hide navbar logo during loader to ensure clean transition handoff
+    // Keep navbar logo hidden during flight to guarantee smooth seamless handoff
     document.body.classList.add('loader-active');
 
-    const flyStartTime = 1000;
-    const flyDuration = 700;
+    const flyStartTime = 950;
+    const flyDuration = 1400; // 1.4s smooth, majestic, luxury glide
 
     const flyTimeout = setTimeout(() => {
-      const targetEl = document.querySelector('.site-header__logo');
+      const targetEl = document.querySelector('.site-header__nav-inner .site-header__logo');
       const currentEl = logoRef.current;
 
       if (targetEl && currentEl) {
@@ -39,7 +39,7 @@ export const Loader = ({ onFinish, duration = 1850 }) => {
       document.body.classList.remove('loader-active');
       document.body.classList.remove('loader-revealing');
       if (onFinish) onFinish();
-    }, flyStartTime + flyDuration + 100);
+    }, flyStartTime + flyDuration + 150);
 
     return () => {
       document.body.classList.remove('loader-active');
@@ -47,14 +47,14 @@ export const Loader = ({ onFinish, duration = 1850 }) => {
       clearTimeout(flyTimeout);
       clearTimeout(finishTimeout);
     };
-  }, [duration, onFinish]);
+  }, [onFinish]);
 
   return (
-    <div
-      className={`app-loader ${fadingBg ? 'app-loader--bg-fading' : ''}`}
-      aria-hidden="true"
-    >
-      <div className="app-loader__center">
+    <div className="app-loader" aria-hidden="true">
+      {/* Independent white veil that fades out smoothly to reveal underlying page */}
+      <div className={`app-loader__backdrop ${fadingBg ? 'app-loader__backdrop--fading' : ''}`} />
+
+      <div className="app-loader__stage">
         {/* Animated Brand Logo Lockup */}
         <div
           ref={logoRef}

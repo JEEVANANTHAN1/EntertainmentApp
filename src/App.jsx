@@ -43,7 +43,7 @@ export function App() {
           <Footer />
           <WhatsAppButton />
         </div>
-        {loading && <Loader onFinish={() => setLoading(false)} duration={1800} />}
+        {loading && <Loader onFinish={() => setLoading(false)} />}
       </BrowserRouter>
     </>
   );

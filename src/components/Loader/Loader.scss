@@ -2,7 +2,7 @@
 @use '../../styles/mixins' as *;
 
 /* Synchronized page reveal rules during loader flight */
-body.loader-active .site-header__logo {
+body.loader-active .site-header__nav-inner .site-header__logo {
   opacity: 0 !important;
 }
 
@@ -12,7 +12,7 @@ body.loader-active:not(.loader-revealing) .app-wrapper {
 
 body.loader-revealing .app-wrapper {
   opacity: 1;
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 1.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 body.loader-active:not(.loader-revealing) .site-header__menu,
@@ -23,7 +23,7 @@ body.loader-active:not(.loader-revealing) .site-header__actions {
 body.loader-revealing .site-header__menu,
 body.loader-revealing .site-header__actions {
   opacity: 1;
-  transition: opacity 0.5s ease 0.3s;
+  transition: opacity 0.8s ease 0.7s;
 }
 
 @keyframes loaderSlide {
@@ -41,20 +41,26 @@ body.loader-revealing .site-header__actions {
   width: 100vw;
   height: 100vh;
   z-index: 99999;
-  background-color: #FFFFFF;
+  pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s ease;
 
-  &--bg-fading {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+  /* Separate backdrop canvas to fade out without affecting the flying logo */
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: #FFFFFF;
+    transition: opacity 1.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    z-index: 1;
+
+    &--fading {
+      opacity: 0;
+    }
   }
 
-  &__center {
+  &__stage {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,10 +76,13 @@ body.loader-revealing .site-header__actions {
     gap: 14px;
     text-decoration: none;
     transform-origin: top left;
-    will-change: transform;
-    transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1);
+    will-change: transform, filter;
+    transition: transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+                filter 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 
     &--flying {
+      filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.22));
+
       .app-loader__logo-main {
         color: #FFFFFF !important;
       }
@@ -111,7 +120,7 @@ body.loader-revealing .site-header__actions {
     letter-spacing: 0.14em;
     color: $color-secondary;
     line-height: 1;
-    transition: color 0.45s ease;
+    transition: color 0.75s ease 0.35s;
   }
 
   &__logo-sub {
@@ -132,7 +141,7 @@ body.loader-revealing .site-header__actions {
     overflow: hidden;
     margin-top: 26px;
     position: relative;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.3s ease;
 
     &--hidden {
       opacity: 0;
