@@ -1,20 +1,29 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
 
-/* Hide navbar logo during loader to ensure clean transition handoff */
+/* Synchronized page reveal rules during loader flight */
 body.loader-active .site-header__logo {
   opacity: 0 !important;
 }
 
-@keyframes loaderLogoEntry {
-  from {
-    opacity: 0;
-    transform: translateY(14px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+body.loader-active:not(.loader-revealing) .app-wrapper {
+  opacity: 0;
+}
+
+body.loader-revealing .app-wrapper {
+  opacity: 1;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.loader-active:not(.loader-revealing) .site-header__menu,
+body.loader-active:not(.loader-revealing) .site-header__actions {
+  opacity: 0;
+}
+
+body.loader-revealing .site-header__menu,
+body.loader-revealing .site-header__actions {
+  opacity: 1;
+  transition: opacity 0.5s ease 0.3s;
 }
 
 @keyframes loaderSlide {
@@ -37,10 +46,11 @@ body.loader-active .site-header__logo {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: background-color 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s ease;
 
   &--bg-fading {
-    background-color: transparent !important;
+    opacity: 0;
+    visibility: hidden;
     pointer-events: none;
   }
 
@@ -53,15 +63,15 @@ body.loader-active .site-header__logo {
     z-index: 2;
   }
 
-  /* Horizontal brand lockup matching navbar layout */
+  /* Horizontal brand lockup */
   &__logo {
     display: inline-flex;
     align-items: center;
     gap: 14px;
     text-decoration: none;
-    animation: loaderLogoEntry 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
-    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: top left;
     will-change: transform;
+    transition: transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1);
 
     &--flying {
       .app-loader__logo-main {

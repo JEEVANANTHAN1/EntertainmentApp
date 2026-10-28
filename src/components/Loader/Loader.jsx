@@ -1,19 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './Loader.scss';
 
-export const Loader = ({ onFinish, duration = 1800 }) => {
+export const Loader = ({ onFinish, duration = 1850 }) => {
   const [isFlying, setIsFlying] = useState(false);
   const [fadingBg, setFadingBg] = useState(false);
-  const [flyStyle, setFlyStyle] = useState({});
+  const [flyTransform, setFlyTransform] = useState('');
   const logoRef = useRef(null);
 
   useEffect(() => {
-    // Hide the navbar logo while loader is active to ensure a seamless handoff
+    // Hide navbar logo during loader to ensure clean transition handoff
     document.body.classList.add('loader-active');
 
-    // Trigger flight and background reveal
-    const flyDuration = 750;
-    const flyStartTime = Math.max(800, duration - flyDuration);
+    const flyStartTime = 1000;
+    const flyDuration = 700;
 
     const flyTimeout = setTimeout(() => {
       const targetEl = document.querySelector('.site-header__logo');
@@ -27,24 +26,24 @@ export const Loader = ({ onFinish, duration = 1800 }) => {
         const dY = targetRect.top - currentRect.top;
         const scale = targetRect.height / currentRect.height;
 
-        setFlyStyle({
-          transform: `translate3d(${dX}px, ${dY}px, 0) scale(${scale})`,
-          transformOrigin: 'top left'
-        });
+        setFlyTransform(`translate3d(${dX}px, ${dY}px, 0) scale(${scale})`);
       }
 
       setIsFlying(true);
       setFadingBg(true);
+      document.body.classList.add('loader-revealing');
     }, flyStartTime);
 
-    // Complete transition and unmount loader
+    // Clean finish with buffer to let easing completely settle
     const finishTimeout = setTimeout(() => {
       document.body.classList.remove('loader-active');
+      document.body.classList.remove('loader-revealing');
       if (onFinish) onFinish();
-    }, duration);
+    }, flyStartTime + flyDuration + 100);
 
     return () => {
       document.body.classList.remove('loader-active');
+      document.body.classList.remove('loader-revealing');
       clearTimeout(flyTimeout);
       clearTimeout(finishTimeout);
     };
@@ -60,7 +59,7 @@ export const Loader = ({ onFinish, duration = 1800 }) => {
         <div
           ref={logoRef}
           className={`app-loader__logo ${isFlying ? 'app-loader__logo--flying' : ''}`}
-          style={flyStyle}
+          style={flyTransform ? { transform: flyTransform } : undefined}
         >
           <div className="app-loader__logo-icon">
             <span>L</span>
@@ -71,7 +70,7 @@ export const Loader = ({ onFinish, duration = 1800 }) => {
           </div>
         </div>
 
-        {/* Hairline Progress Indicator (Fades out when flight starts) */}
+        {/* Hairline Progress Indicator */}
         <div className={`app-loader__track ${isFlying ? 'app-loader__track--hidden' : ''}`}>
           <div className="app-loader__bar" />
         </div>
