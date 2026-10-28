@@ -264,7 +264,7 @@ export const Navbar = () => {
             </li>
             <li>
               <NavLink to="/gallery" className="site-header__mobile-link">
-                Gallery <span className="site-header__mobile-badge">New</span>
+                Gallery
               </NavLink>
             </li>
             <li>
