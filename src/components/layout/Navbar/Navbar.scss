@@ -281,26 +281,74 @@
     right: 0;
     bottom: 0;
     width: 380px;
-    max-width: 85vw;
+    max-width: 88vw;
     background: #FFFFFF;
-    padding: 40px 30px;
+    padding: 36px 26px;
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
     transform: translateX(100%);
     transition: transform $transition-normal;
     z-index: 2;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+
+    .site-header__logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+
+      .site-header__logo-icon {
+        width: 44px;
+        height: 44px;
+        background: $color-primary;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFFFFF;
+        font-size: 1.5rem;
+        font-weight: 800;
+        box-shadow: 0 4px 14px rgba(243, 112, 33, 0.35);
+        flex-shrink: 0;
+      }
+
+      .site-header__logo-text {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+      }
+
+      .site-header__logo-main {
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        color: $color-secondary !important;
+        line-height: 1;
+      }
+
+      .site-header__logo-sub {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        color: $color-primary;
+        margin-top: 4px;
+      }
+    }
 
     h4 {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       color: $color-secondary;
-      margin-bottom: 12px;
-      font-weight: 700;
+      margin-bottom: 10px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
     }
 
     p {
       color: $color-text-secondary;
       font-size: 0.92rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
+      line-height: 1.65;
+      margin-bottom: 22px;
     }
   }
 
@@ -321,23 +369,70 @@
 
   &__quick-info {
     border-top: 1px solid rgba(8, 23, 53, 0.08);
-    padding-top: 18px;
+    padding-top: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 26px;
+  }
 
-    p {
-      margin-bottom: 12px;
-      font-size: 0.9rem;
-      color: $color-text-secondary;
+  &__quick-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    svg {
+      color: $color-primary;
+      font-size: 1.15rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
     }
 
     strong {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: $color-text-muted;
+    }
+
+    span, a {
+      font-size: 0.95rem;
+      font-weight: 600;
       color: $color-secondary;
+      line-height: 1.4;
+      word-break: break-word;
     }
 
     a {
       color: $color-primary;
       text-decoration: none;
-      font-weight: 600;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: $color-primary-dark;
+        text-decoration: underline;
+      }
     }
+  }
+
+  &__quick-cta {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 14px 20px !important;
+    border-radius: 50px !important;
+    font-size: 0.95rem !important;
+    font-weight: 700 !important;
   }
 
   // --- MOBILE DRAWER ---

@@ -12,7 +12,8 @@ import {
   FaStar,
   FaTh,
   FaPhoneAlt,
-  FaEnvelope
+  FaEnvelope,
+  FaClock
 } from 'react-icons/fa';
 import { companyInfo, services } from '../../../data/dummyData';
 import { useScrollPosition } from '../../../hooks/useScrollPosition';
@@ -170,10 +171,10 @@ export const Navbar = () => {
       <div className={`site-header__quick-drawer ${quickContactOpen ? 'site-header__quick-drawer--open' : ''}`}>
         <div className="site-header__mobile-backdrop" onClick={() => setQuickContactOpen(false)} />
         <div className="site-header__quick-drawer-box">
-          <button className="site-header__quick-close" onClick={() => setQuickContactOpen(false)}>
+          <button className="site-header__quick-close" onClick={() => setQuickContactOpen(false)} aria-label="Close Contact Drawer">
             <FaTimes />
           </button>
-          <div className="site-header__logo" style={{ marginBottom: '24px' }}>
+          <div className="site-header__logo">
             <div className="site-header__logo-icon"><span>L</span></div>
             <div className="site-header__logo-text">
               <span className="site-header__logo-main">LUMINA</span>
@@ -183,11 +184,31 @@ export const Navbar = () => {
           <h4>Contact Us</h4>
           <p>At Lumina, we excel in handling all event types. Whether you require celebrity connections or special occasions, we're your go-to experts.</p>
           <div className="site-header__quick-info">
-            <p><strong>Phone:</strong> <a href={`tel:${companyInfo.phone}`}>{companyInfo.phoneFormatted}</a></p>
-            <p><strong>Email:</strong> <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a></p>
-            <p><strong>Timing:</strong> {companyInfo.workingHours}</p>
+            <div className="site-header__quick-item">
+              <FaPhoneAlt />
+              <div>
+                <strong>Phone</strong>
+                <a href={`tel:${companyInfo.phone}`}>{companyInfo.phoneFormatted}</a>
+              </div>
+            </div>
+
+            <div className="site-header__quick-item">
+              <FaEnvelope />
+              <div>
+                <strong>Email</strong>
+                <a href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
+              </div>
+            </div>
+
+            <div className="site-header__quick-item">
+              <FaClock />
+              <div>
+                <strong>Timing</strong>
+                <span>{companyInfo.workingHours}</span>
+              </div>
+            </div>
           </div>
-          <Button to="/enquiry" variant="primary" size="md" style={{ marginTop: '20px', width: '100%' }}>
+          <Button to="/enquiry" variant="primary" size="md" className="site-header__quick-cta">
             Enquire Now
           </Button>
         </div>
