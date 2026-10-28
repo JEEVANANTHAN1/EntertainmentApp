@@ -23,6 +23,7 @@
   width: 56px;
   height: 56px;
   z-index: 9999;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 
   @include respond-to(mobile) {
     bottom: 20px;
@@ -109,5 +110,17 @@
       opacity: 1;
       transform: translateY(-50%) translateX(0);
     }
+  }
+}
+
+// Automatically suppress floating button when any drawer or modal is open
+body:has(.site-header__mobile-drawer--open),
+body:has(.site-header__quick-drawer--open),
+body:has(.ui-modal),
+body:has(.lightbox-modal) {
+  .whatsapp-float {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: scale(0.7) !important;
   }
 }

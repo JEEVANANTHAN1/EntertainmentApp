@@ -17,7 +17,9 @@ import './ServiceDetail.scss';
 
 export const ServiceDetail = () => {
   const { slug } = useParams();
-  const service = services.find((s) => s.slug === slug);
+  const service = services.find(
+    (s) => s.slug === slug || s.id === slug || s.slug.startsWith(slug) || slug.startsWith(s.id)
+  );
 
   // Quick form state
   const [formData, setFormData] = useState({

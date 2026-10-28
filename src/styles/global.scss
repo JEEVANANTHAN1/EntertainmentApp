@@ -45,9 +45,9 @@ main.main-content {
   margin-bottom: 12px;
 
   &--gold {
-    background: rgba($color-secondary, 0.1);
-    border-color: rgba($color-secondary, 0.3);
-    color: $color-secondary;
+    background: rgba($color-primary, 0.1);
+    border-color: rgba($color-primary, 0.35);
+    color: $color-primary;
   }
 }
 
