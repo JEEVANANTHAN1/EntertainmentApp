@@ -1,0 +1,76 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.orange-stats-ribbon {
+  background: linear-gradient(90deg, #F37021 0%, #FA8231 100%);
+  padding: 38px 6%;
+  box-shadow: 0 8px 24px rgba(243, 112, 33, 0.25);
+  position: relative;
+  z-index: 5;
+
+  @include respond-to(tablet) {
+    padding: 30px 4%;
+  }
+
+  &__container {
+    @include container;
+    @include flex-between;
+    gap: 24px;
+    flex-wrap: wrap;
+
+    @include respond-to(mobile) {
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+}
+
+.orange-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &__circle {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: #081735;
+    border: 3px dashed rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    @include flex-center;
+    flex-shrink: 0;
+    transition: transform $transition-fast;
+
+    &:hover {
+      transform: scale(1.08);
+    }
+
+    @include respond-to(mobile) {
+      width: 58px;
+      height: 58px;
+    }
+  }
+
+  &__num {
+    font-family: $font-accent;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: -0.02em;
+
+    @include respond-to(mobile) {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 0.02em;
+
+    @include respond-to(mobile) {
+      font-size: 0.9rem;
+    }
+  }
+}

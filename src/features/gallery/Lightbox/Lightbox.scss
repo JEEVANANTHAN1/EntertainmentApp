@@ -1,0 +1,198 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  @include flex-center;
+  padding: 20px;
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 5, 8, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    animation: fadeIn 0.25s ease;
+  }
+
+  &__top-bar {
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    right: 28px;
+    z-index: 20;
+    @include flex-between;
+  }
+
+  &__counter {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 6px 14px;
+    border-radius: $radius-full;
+    font-size: 0.88rem;
+    font-family: $font-accent;
+    color: #FFFFFF;
+    letter-spacing: 0.08em;
+  }
+
+  &__close-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    @include flex-center;
+    font-size: 1.25rem;
+    transition: all $transition-fast;
+    cursor: pointer;
+
+    &:hover {
+      background: $color-primary;
+      transform: scale(1.1) rotate(90deg);
+    }
+  }
+
+  // --- ARROWS ---
+  &__nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(18, 20, 26, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+    @include flex-center;
+    font-size: 1.2rem;
+    z-index: 20;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: $color-primary;
+      border-color: $color-primary-light;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    &--prev {
+      left: 28px;
+
+      @include respond-to(tablet) {
+        left: 12px;
+        width: 42px;
+        height: 42px;
+      }
+    }
+
+    &--next {
+      right: 28px;
+
+      @include respond-to(tablet) {
+        right: 12px;
+        width: 42px;
+        height: 42px;
+      }
+    }
+  }
+
+  // --- CONTENT ---
+  &__content {
+    position: relative;
+    z-index: 10;
+    max-width: 960px;
+    width: 100%;
+    max-height: 85vh;
+    @include flex-column;
+    align-items: center;
+  }
+
+  &__media-container {
+    max-width: 100%;
+    max-height: 65vh;
+    border-radius: $radius-md;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: #000000;
+  }
+
+  &__image {
+    max-width: 100%;
+    max-height: 65vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  &__video {
+    max-width: 100%;
+    max-height: 65vh;
+    width: 850px;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  &__details {
+    margin-top: 18px;
+    text-align: center;
+    @include flex-column;
+    align-items: center;
+  }
+
+  &__tags {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__category {
+    background: $color-primary;
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    border-radius: $radius-full;
+    letter-spacing: 0.05em;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.08);
+    color: $color-text-secondary;
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: $radius-full;
+
+    svg {
+      font-size: 0.65rem;
+      color: $color-secondary;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+
+    @include respond-to(tablet) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: 0.95rem;
+    color: $color-text-secondary;
+  }
+}
+

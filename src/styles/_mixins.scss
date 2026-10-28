@@ -1,0 +1,108 @@
+// ==============================================================================
+// REUSABLE SCSS MIXINS — LIGHT THEME
+// ==============================================================================
+@use './variables' as *;
+
+// --- RESPONSIVE MEDIA QUERIES ---
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile-sm {
+    @media (max-width: $bp-mobile-sm) { @content; }
+  } @else if $breakpoint == mobile {
+    @media (max-width: $bp-mobile) { @content; }
+  } @else if $breakpoint == tablet {
+    @media (max-width: $bp-tablet) { @content; }
+  } @else if $breakpoint == laptop {
+    @media (max-width: $bp-laptop) { @content; }
+  } @else if $breakpoint == desktop {
+    @media (max-width: $bp-desktop) { @content; }
+  } @else if $breakpoint == wide {
+    @media (min-width: $bp-wide) { @content; }
+  }
+}
+
+// --- FLEXBOX UTILITIES ---
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// --- GLASSMORPHISM (LIGHT) ---
+@mixin glass($bg: rgba(255, 255, 255, 0.88), $blur: 16px, $border: $color-border) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $border;
+}
+
+// --- GRADIENT TEXT ---
+@mixin gradient-text($gradient: $gradient-gold) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+// --- SECTION PADDING ---
+@mixin section-padding {
+  padding: 100px 6%;
+
+  @include respond-to(tablet) {
+    padding: 70px 5%;
+  }
+
+  @include respond-to(mobile) {
+    padding: 50px 4%;
+  }
+}
+
+// --- CONTAINER WRAPPER ---
+@mixin container {
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+// --- CARD HOVER EFFECT ---
+@mixin card-interactive {
+  background: $gradient-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: $shadow-sm;
+  transition: all $transition-normal;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: $color-border-hover;
+    box-shadow: $shadow-glow-primary;
+  }
+}
+
+// --- CUSTOM SCROLLBAR ---
+@mixin sleek-scrollbar($width: 8px, $thumb-color: $color-primary) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+  &::-webkit-scrollbar-track {
+    background: #EDF1F7;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $radius-full;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $color-primary-dark;
+  }
+}

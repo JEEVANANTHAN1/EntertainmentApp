@@ -1,0 +1,117 @@
+// ==============================================================================
+// DESIGN TOKENS & VARIABLES — LIGHT THEME
+// Single source of truth for colors, typography, elevations, and breakpoints
+// ==============================================================================
+
+// --- BRAND COLOR PALETTE (SIGNATURE SUNBURST ORANGE & DEEP NAVY) ---
+$color-primary: #F37021;               // Signature Sunburst Orange
+$color-primary-dark: #D65A0E;          // Deep Terracotta Orange
+$color-primary-light: #FF8533;         // Bright Tangerine
+$color-primary-glow: rgba(243, 112, 33, 0.28);
+
+$color-secondary: #081735;             // Deep Royal Navy Blue
+$color-secondary-light: #162C5B;       // Mid Royal Navy
+$color-secondary-dark: #040D1F;        // Midnight Navy
+
+$color-accent-gold: #FFB800;           // Radiant Yellow/Gold
+$color-accent-neon: #00B4D8;           // Cyan accent
+$color-accent-purple: #7B2CBF;         // Violet accent
+
+// --- LIGHT SURFACES ---
+$color-dark: #F8F9FB;                  // Crisp Clean White/Pearl Background
+$color-dark-surface: #FFFFFF;          // Pure White
+$color-dark-elevated: #F1F4F8;         // Soft Contrast Alternate Section
+$color-dark-hover: #FFF7F2;            // Warm Tint Hover
+$color-dark-nav: rgba(255, 255, 255, 0.96); // Frosted Glassmorphism
+
+// --- TYPOGRAPHY COLORS ---
+$color-text: #081735;                  // Primary text: Deep Navy
+$color-text-secondary: #4A5568;        // Secondary text: Slate
+$color-text-muted: #718096;            // Muted captions
+
+// --- BORDERS & LINES ---
+$color-border: rgba(8, 23, 53, 0.08);  // Subtle border
+$color-border-hover: rgba(243, 112, 33, 0.4);
+$color-border-gold: rgba(243, 112, 33, 0.35);
+
+// --- GRADIENTS ---
+$gradient-primary: linear-gradient(135deg, #F37021 0%, #FF8533 100%);
+$gradient-navy: linear-gradient(135deg, #081735 0%, #162C5B 100%);
+$gradient-gold: linear-gradient(135deg, #F37021 0%, #FFB800 100%);
+$gradient-dark: linear-gradient(180deg, #F8F9FB 0%, #EDF1F7 100%);
+$gradient-hero: linear-gradient(180deg, rgba(8, 23, 53, 0.35) 0%, rgba(8, 23, 53, 0.6) 100%);
+$gradient-card: linear-gradient(145deg, #FFFFFF 0%, #FAFBFC 100%);
+
+// --- UNIFIED SINGLE TYPOGRAPHY FAMILY ---
+$font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-heading: $font-family;
+$font-body: $font-family;
+$font-accent: $font-family;
+
+// --- BREAKPOINTS ---
+$bp-mobile-sm: 360px;
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-laptop: 1024px;
+$bp-desktop: 1280px;
+$bp-wide: 1440px;
+
+// --- SHADOWS ---
+$shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+$shadow-md: 0 10px 28px -4px rgba(15, 23, 42, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+$shadow-lg: 0 20px 40px -10px rgba(15, 23, 42, 0.12), 0 8px 16px -4px rgba(15, 23, 42, 0.06);
+
+// Colored Brand Glows (Sunburst Orange & Deep Navy)
+$shadow-glow-primary: 0 8px 30px rgba(243, 112, 33, 0.28);
+$shadow-glow-secondary: 0 8px 30px rgba(8, 23, 53, 0.22);
+$shadow-glow-red: $shadow-glow-primary;
+$shadow-glow-gold: $shadow-glow-primary;
+
+// Button & Interactive Element Shadows
+$shadow-button-primary: 0 4px 18px rgba(243, 112, 33, 0.35);
+$shadow-button-primary-hover: 0 8px 28px rgba(243, 112, 33, 0.52);
+$shadow-button-secondary: 0 4px 18px rgba(8, 23, 53, 0.25);
+$shadow-button-secondary-hover: 0 8px 28px rgba(8, 23, 53, 0.4);
+$shadow-input-focus: 0 0 0 3px rgba(243, 112, 33, 0.2), 0 2px 8px rgba(8, 23, 53, 0.06);
+
+// --- RADIUS ---
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 14px;
+$radius-lg: 20px;
+$radius-full: 9999px;
+
+// --- TRANSITIONS ---
+$transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+// --- Z-INDEX LAYERS ---
+$z-negative: -1;
+$z-normal: 1;
+$z-elevated: 10;
+$z-dropdown: 100;
+$z-sticky: 500;
+$z-navbar: 1000;
+$z-modal: 1500;
+$z-loader: 2000;
+
+// Export CSS custom properties on :root
+:root {
+  --color-primary: #{$color-primary};
+  --color-primary-dark: #{$color-primary-dark};
+  --color-primary-light: #{$color-primary-light};
+  --color-secondary: #{$color-secondary};
+  --color-secondary-light: #{$color-secondary-light};
+  --color-dark: #{$color-dark};
+  --color-dark-surface: #{$color-dark-surface};
+  --color-dark-elevated: #{$color-dark-elevated};
+  --color-text: #{$color-text};
+  --color-text-secondary: #{$color-text-secondary};
+  --color-text-muted: #{$color-text-muted};
+  --color-border: #{$color-border};
+  --font-family: #{$font-family};
+  --font-heading: #{$font-heading};
+  --font-body: #{$font-body};
+  --font-accent: #{$font-accent};
+}

@@ -1,0 +1,100 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.team-section-home {
+  padding: 85px 0;
+  background: #FFFFFF;
+  position: relative;
+
+  &__container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 45px;
+  }
+
+  &__sub-title {
+    display: inline-block;
+    color: $color-primary;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  &__title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: $color-secondary;
+    margin-bottom: 8px;
+
+    @include respond-to(tablet) {
+      font-size: 1.75rem;
+    }
+  }
+
+  &__grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+}
+
+.team-member-card {
+  width: 300px;
+  max-width: 100%;
+  text-align: center;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+
+    .team-member-card__image-wrap {
+      border-color: $color-primary;
+      box-shadow: 0 10px 25px rgba(243, 112, 33, 0.25);
+    }
+  }
+
+  &__image-wrap {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #F1F3F5;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    transition: all 0.35s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    padding: 0 10px;
+  }
+
+  &__name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $color-secondary;
+    margin-bottom: 6px;
+  }
+
+  &__role {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: $color-primary;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+}

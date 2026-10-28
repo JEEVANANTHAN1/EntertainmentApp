@@ -1,0 +1,117 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.page-hero {
+  position: relative;
+  min-height: 290px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 50px;
+  overflow: hidden;
+  text-align: center;
+  background: $color-secondary;
+
+  @include respond-to(tablet) {
+    min-height: 240px;
+    padding: 100px 20px 40px;
+  }
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center center;
+    transform: scale(1.04);
+    z-index: 1;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(8, 23, 53, 0.72) 0%,
+      rgba(8, 23, 53, 0.88) 100%
+    );
+    z-index: 2;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 3;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__breadcrumbs {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.9rem;
+    padding: 5px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50px;
+    font-size: 0.82rem;
+  }
+
+  &__crumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &--active {
+      color: $color-primary;
+      font-weight: 600;
+      pointer-events: none;
+    }
+  }
+
+  &__crumb-icon {
+    font-size: 0.8rem;
+  }
+
+  &__separator {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  &__title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+
+    @include respond-to(tablet) {
+      font-size: 2.1rem;
+    }
+
+    @include respond-to(mobile) {
+      font-size: 1.8rem;
+    }
+  }
+
+  &__subtitle {
+    max-width: 620px;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.6;
+    margin: 0;
+
+    @include respond-to(mobile) {
+      font-size: 0.9rem;
+    }
+  }
+}

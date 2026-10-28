@@ -1,0 +1,81 @@
+// ==============================================================================
+// CSS RESET & BASE ELEMENT STYLES
+// ==============================================================================
+@use './variables' as *;
+@use './mixins' as *;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-body;
+  background-color: $color-dark;
+  color: $color-text;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  @include sleek-scrollbar(8px, rgba($color-primary, 0.7));
+}
+
+// Typography basics
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  color: $color-text;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+p {
+  color: $color-text-secondary;
+  font-size: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-light;
+  }
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+button {
+  cursor: pointer;
+  transition: all $transition-normal;
+}
+
+::selection {
+  background-color: $color-primary;
+  color: #FFFFFF;
+}
+

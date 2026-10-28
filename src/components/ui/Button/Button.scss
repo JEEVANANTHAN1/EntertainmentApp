@@ -1,0 +1,125 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: $font-body;
+  font-weight: 600;
+  border-radius: $radius-full;
+  transition: all $transition-normal;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  user-select: none;
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.1em;
+    transition: transform $transition-fast;
+  }
+
+  &:hover &__icon--right {
+    transform: translateX(4px);
+  }
+
+  &:hover &__icon--left {
+    transform: translateX(-4px);
+  }
+
+  // --- SIZES ---
+  &--sm {
+    padding: 8px 18px;
+    font-size: 0.85rem;
+  }
+
+  &--md {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+
+  &--lg {
+    padding: 16px 36px;
+    font-size: 1.05rem;
+  }
+
+  // --- VARIANTS ---
+  &--primary {
+    background: $gradient-primary;
+    color: #FFFFFF;
+    box-shadow: $shadow-button-primary;
+
+    &:hover {
+      box-shadow: $shadow-button-primary-hover;
+      transform: translateY(-2px);
+      color: #FFFFFF;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &--secondary {
+    background: #FFFFFF;
+    color: $color-text;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      background: $color-dark-elevated;
+      border-color: rgba(15, 23, 42, 0.25);
+      color: $color-primary;
+      transform: translateY(-2px);
+    }
+  }
+
+  &--gold {
+    background: $gradient-gold;
+    color: #FFFFFF;
+    font-weight: 700;
+    box-shadow: $shadow-button-secondary;
+
+    &:hover {
+      box-shadow: $shadow-button-secondary-hover;
+      transform: translateY(-2px);
+      color: #FFFFFF;
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: $color-text;
+    border: 1.5px solid rgba(15, 23, 42, 0.2);
+
+    &:hover {
+      border-color: $color-primary;
+      background: rgba($color-primary, 0.06);
+      color: $color-primary;
+      transform: translateY(-2px);
+    }
+  }
+
+  &--glass {
+    @include glass(rgba(255, 255, 255, 0.18), 12px, rgba(255, 255, 255, 0.35));
+    color: #FFFFFF;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-2px);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}

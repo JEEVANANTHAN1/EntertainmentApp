@@ -1,0 +1,18 @@
+@use '../styles/variables' as *;
+@use '../styles/mixins' as *;
+
+.gallery-page {
+  background: #FFFFFF;
+  color: $color-secondary;
+}
+
+.gallery-content-section {
+  padding: 85px 0;
+  background: #FFFFFF;
+
+  &__container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+}

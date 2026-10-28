@@ -1,0 +1,79 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.memorable-cta-section {
+  padding: 80px 6%;
+  background: linear-gradient(135deg, #081735 0%, #0F2552 100%);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(243, 112, 33, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__box {
+    @include flex-between;
+    gap: 50px;
+
+    @include respond-to(laptop) {
+      flex-direction: column;
+      text-align: center;
+      gap: 35px;
+    }
+  }
+
+  &__text {
+    max-width: 650px;
+  }
+
+  &__heading {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+
+    @include respond-to(mobile) {
+      font-size: 1.85rem;
+    }
+  }
+
+  &__desc {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+  }
+
+  &__action-col {
+    @include flex-column;
+    align-items: flex-end;
+    gap: 16px;
+
+    @include respond-to(laptop) {
+      align-items: center;
+    }
+  }
+
+  &__subhead {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: $color-primary;
+    white-space: nowrap;
+
+    @include respond-to(mobile) {
+      white-space: normal;
+      font-size: 1.25rem;
+    }
+  }
+}

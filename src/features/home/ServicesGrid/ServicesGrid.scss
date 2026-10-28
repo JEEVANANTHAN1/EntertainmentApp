@@ -1,0 +1,125 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.services-showcase {
+  padding: 80px 6%;
+  background: #FFFFFF;
+
+  @include respond-to(tablet) {
+    padding: 50px 4%;
+  }
+
+  &__container {
+    @include container;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: $color-secondary;
+    letter-spacing: -0.02em;
+
+    @include respond-to(mobile) {
+      font-size: 2rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px 35px;
+
+    @include respond-to(laptop) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 35px 25px;
+    }
+
+    @include respond-to(mobile) {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+}
+
+.service-framed-card {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform $transition-fast;
+
+  &:hover {
+    transform: translateY(-6px);
+
+    .service-framed-card__outer-frame::before {
+      transform: translate(14px, 14px);
+    }
+
+    .service-framed-card__inner-frame img {
+      transform: scale(1.05);
+    }
+
+    .service-framed-card__title {
+      color: $color-primary;
+    }
+  }
+
+  &__outer-frame {
+    position: relative;
+    width: 100%;
+    margin-bottom: 22px;
+
+    // Offset orange frame behind
+    &::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: -10px;
+      bottom: -10px;
+      border: 3px solid $color-primary;
+      border-radius: $radius-sm;
+      transition: transform $transition-normal;
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  &__inner-frame {
+    position: relative;
+    z-index: 2;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    height: 270px;
+    width: 100%;
+    background: #081735;
+    border: 3px solid #081735;
+    box-shadow: 0 10px 25px rgba(8, 23, 53, 0.12);
+
+    @include respond-to(mobile) {
+      height: 230px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $color-secondary;
+    text-align: center;
+    transition: color $transition-fast;
+    margin-top: 8px;
+  }
+}

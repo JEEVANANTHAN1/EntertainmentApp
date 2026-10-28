@@ -1,0 +1,42 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.ui-card {
+  background: $gradient-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  position: relative;
+  overflow: hidden;
+  transition: all $transition-normal;
+
+  &--padding-none { padding: 0; }
+  &--padding-sm { padding: 1.25rem; }
+  &--padding-md { padding: 2rem; }
+  &--padding-lg { padding: 2.75rem; }
+
+  &--interactive {
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-6px);
+      background: $color-dark-hover;
+    }
+  }
+
+  &--glow-red:hover,
+  &--glow-primary:hover {
+    border-color: $color-border-hover;
+    box-shadow: $shadow-glow-primary;
+  }
+
+  &--glow-gold:hover,
+  &--glow-secondary:hover {
+    border-color: $color-border-gold;
+    box-shadow: $shadow-glow-secondary;
+  }
+
+  &--glow-none:hover {
+    box-shadow: $shadow-md;
+  }
+}
+

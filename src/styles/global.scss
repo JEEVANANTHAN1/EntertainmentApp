@@ -1,0 +1,73 @@
+// ==============================================================================
+// GLOBAL MAIN STYLESHEET — LIGHT THEME
+// ==============================================================================
+@forward './variables';
+@forward './mixins';
+@forward './animations';
+@use './variables' as *;
+@use './reset';
+
+.app-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-dark);
+}
+
+main.main-content {
+  flex: 1 0 auto;
+}
+
+// Utility classes
+.text-gold {
+  color: var(--color-secondary);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba($color-primary, 0.08);
+  border: 1px solid rgba($color-primary, 0.25);
+  color: $color-primary;
+  margin-bottom: 12px;
+
+  &--gold {
+    background: rgba($color-secondary, 0.1);
+    border-color: rgba($color-secondary, 0.3);
+    color: $color-secondary;
+  }
+}
+
+// Media Fox signature colored dashes under headings
+.title-dash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 10px auto 20px;
+
+  &--left {
+    justify-content: flex-start;
+    margin: 10px 0 20px;
+  }
+
+  span {
+    height: 4px;
+    border-radius: 2px;
+  }
+  span:nth-child(1) { width: 16px; background-color: $color-primary; }
+  span:nth-child(2) { width: 8px;  background-color: $color-secondary; }
+  span:nth-child(3) { width: 14px; background-color: #FFB800; }
+}

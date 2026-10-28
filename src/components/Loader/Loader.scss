@@ -1,0 +1,142 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+/* Hide navbar logo during loader to ensure clean transition handoff */
+body.loader-active .site-header__logo {
+  opacity: 0 !important;
+}
+
+@keyframes loaderLogoEntry {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes loaderSlide {
+  0% {
+    left: -45%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.app-loader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background-color 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease;
+
+  &--bg-fading {
+    background-color: transparent !important;
+    pointer-events: none;
+  }
+
+  &__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Horizontal brand lockup matching navbar layout */
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    animation: loaderLogoEntry 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+
+    &--flying {
+      .app-loader__logo-main {
+        color: #FFFFFF !important;
+      }
+    }
+  }
+
+  &__logo-icon {
+    width: 52px;
+    height: 52px;
+    background: $color-primary;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 1.8rem;
+    font-weight: 800;
+    box-shadow: 0 8px 24px rgba(243, 112, 33, 0.35);
+    flex-shrink: 0;
+
+    span {
+      line-height: 1;
+    }
+  }
+
+  &__logo-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  &__logo-main {
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: $color-secondary;
+    line-height: 1;
+    transition: color 0.45s ease;
+  }
+
+  &__logo-sub {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: $color-primary;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  /* Hairline progress bar under centered logo */
+  &__track {
+    width: 140px;
+    height: 3px;
+    background: rgba(8, 23, 53, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 26px;
+    position: relative;
+    transition: opacity 0.25s ease;
+
+    &--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &__bar {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 45%;
+    background: linear-gradient(90deg, $color-primary, #FFB800);
+    border-radius: 4px;
+    animation: loaderSlide 1.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+}
