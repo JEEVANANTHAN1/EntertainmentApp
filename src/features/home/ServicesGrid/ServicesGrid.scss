@@ -2,15 +2,16 @@
 @use '../../../styles/mixins' as *;
 
 .services-showcase {
-  padding: 80px 6%;
+  padding: 85px 0;
   background: #FFFFFF;
 
   @include respond-to(tablet) {
-    padding: 50px 4%;
+    padding: 60px 0;
   }
 
   &__container {
     @include container;
+    padding: 0 24px;
   }
 
   &__header {
@@ -18,93 +19,101 @@
     margin-bottom: 50px;
   }
 
+  &__eyebrow {
+    display: inline-block;
+    color: $color-secondary-dark;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
   &__title {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 800;
     color: $color-primary;
     letter-spacing: -0.02em;
 
     @include respond-to(mobile) {
-      font-size: 2rem;
+      font-size: 1.85rem;
     }
   }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 45px 35px;
+    gap: 30px;
 
     @include respond-to(laptop) {
       grid-template-columns: repeat(2, 1fr);
-      gap: 35px 25px;
+      gap: 25px;
     }
 
     @include respond-to(mobile) {
       grid-template-columns: 1fr;
-      gap: 30px;
+      gap: 24px;
     }
   }
 }
 
-.service-framed-card {
-  text-decoration: none;
+.service-axis-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: $radius-lg;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  transition: transform $transition-normal, filter $transition-normal;
+  text-decoration: none;
+  box-shadow: $shadow-sm;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   &:hover {
     transform: translateY(-6px);
+    border-color: rgba(201, 169, 110, 0.7);
+    box-shadow: 0 16px 36px rgba(23, 59, 53, 0.12);
 
-    .service-framed-card__outer-frame::before {
-      transform: translate(6px, 6px);
-      border-color: $color-secondary;
+    .service-axis-card__media img {
+      transform: scale(1.08);
     }
 
-    .service-framed-card__inner-frame img {
-      transform: scale(1.06);
+    .service-axis-card__line {
+      width: 52px;
+      background: $color-secondary;
     }
 
-    .service-framed-card__title {
+    .service-axis-card__icon-badge {
+      background: $color-secondary;
+      color: $color-primary-dark;
+      transform: scale(1.08);
+    }
+
+    .service-axis-card__title {
       color: $color-primary-dark;
     }
-  }
 
-  &__outer-frame {
-    position: relative;
-    width: 100%;
-    margin-bottom: 22px;
+    .service-axis-card__cta {
+      color: $color-secondary-dark;
 
-    // Offset gold frame behind
-    &::before {
-      content: '';
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      right: -10px;
-      bottom: -10px;
-      border: 2px solid $color-secondary;
-      border-radius: $radius-sm;
-      transition: transform $transition-normal;
-      z-index: 1;
-      pointer-events: none;
+      .service-axis-card__arrow {
+        transform: translateX(5px);
+        color: $color-secondary-dark;
+      }
     }
   }
 
-  &__inner-frame {
+  &__media {
     position: relative;
-    z-index: 2;
-    border-radius: $radius-sm;
-    overflow: hidden;
-    height: 270px;
     width: 100%;
+    height: 215px;
+    overflow: hidden;
     background: $color-primary-dark;
-    border: 1px solid $color-border;
-    box-shadow: $shadow-md;
 
     @include respond-to(mobile) {
-      height: 230px;
+      height: 195px;
     }
 
     img {
@@ -112,16 +121,124 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
     }
   }
 
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(16, 43, 39, 0.3) 0%,
+      transparent 50%,
+      rgba(16, 43, 39, 0.45) 100%
+    );
+    pointer-events: none;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    padding: 4px 12px;
+    border-radius: $radius-full;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(16, 43, 39, 0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #e8d2a7;
+    border: 1px solid rgba(201, 169, 110, 0.4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    z-index: 2;
+  }
+
+  &__icon-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: $color-primary;
+    color: #FFFFFF;
+    @include flex-center;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transition: all $transition-fast;
+  }
+
+  &__body {
+    padding: 24px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background: #FFFFFF;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  &__number {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: $color-secondary-dark;
+    letter-spacing: 0.12em;
+  }
+
+  &__line {
+    width: 24px;
+    height: 2px;
+    background: rgba(201, 169, 110, 0.6);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
   &__title {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: $color-primary;
-    text-align: center;
+    line-height: 1.35;
+    margin-bottom: 8px;
     transition: color $transition-fast;
-    margin-top: 8px;
+  }
+
+  &__desc {
+    font-size: 0.86rem;
+    color: $color-text-secondary;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex-grow: 1;
+  }
+
+  &__footer {
+    padding-top: 14px;
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $color-primary;
+    transition: color $transition-fast;
+
+    .service-axis-card__arrow {
+      font-size: 0.8rem;
+      transition: transform $transition-fast, color $transition-fast;
+    }
   }
 }
