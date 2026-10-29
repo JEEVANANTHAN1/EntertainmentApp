@@ -66,8 +66,8 @@ export const Navbar = () => {
               <BrandPrismMark />
             </div>
             <div className="site-header__logo-text">
-              <span className="site-header__logo-main">LUMINA</span>
-              <span className="site-header__logo-sub">ENTERTAINMENTS</span>
+              <span className="site-header__logo-main">Axis</span>
+              <span className="site-header__logo-sub">General</span>
             </div>
           </Link>
 
@@ -131,11 +131,11 @@ export const Navbar = () => {
               </NavLink>
             </li>
 
-            <li className="site-header__menu-item">
+            {/* <li className="site-header__menu-item">
               <NavLink to="/enquiry" className={({ isActive }) => `site-header__link ${isActive ? 'site-header__link--active' : ''}`}>
                 Enquiry
               </NavLink>
-            </li>
+            </li> */}
 
             <li className="site-header__menu-item">
               <NavLink to="/contact" className={({ isActive }) => `site-header__link ${isActive ? 'site-header__link--active' : ''}`}>

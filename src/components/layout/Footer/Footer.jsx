@@ -26,14 +26,14 @@ export const Footer = () => {
                   <BrandPrismMark size={46} />
                 </div>
                 <div className="mediafox-footer__logo-text">
-                  <span className="mediafox-footer__logo-main">LUMINA</span>
-                  <span className="mediafox-footer__logo-sub">ENTERTAINMENTS</span>
+                  <span className="mediafox-footer__logo-main">Axis</span>
+                  <span className="mediafox-footer__logo-sub">General</span>
                 </div>
               </Link>
 
               {/* Bio Narrative */}
               <p className="mediafox-footer__text">
-                At Lumina, we excel in handling all event types. Whether you require celebrity connections for shop openings or special occasions, we're your go-to experts.
+                At Axis, we excel in handling all event types. Whether you require celebrity connections for shop openings or special occasions, we're your go-to experts.
               </p>
             </div>
 
@@ -126,7 +126,7 @@ export const Footer = () => {
             <div className="mediafox-footer__copyright">
               <p>
                 Copyright © {new Date().getFullYear()} All Rights Reserved by{' '}
-                <Link to="/">Lumina</Link>
+                <Link to="/">Axis</Link>
               </p>
             </div>
           </div>

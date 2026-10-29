@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   FaCheckCircle,
-  FaPhoneAlt,
   FaWhatsapp,
-  FaCalendarAlt,
   FaArrowRight,
   FaShieldAlt,
   FaStar,
   FaChevronRight
 } from 'react-icons/fa';
+
 import PageHero from '../components/ui/PageHero/PageHero';
 import Button from '../components/ui/Button/Button';
 import { services, companyInfo } from '../data/dummyData';
@@ -20,16 +19,6 @@ export const ServiceDetail = () => {
   const service = services.find(
     (s) => s.slug === slug || s.id === slug || s.slug.startsWith(slug) || slug.startsWith(s.id)
   );
-
-  // Quick form state
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    date: '',
-    city: '',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
 
   if (!service) {
     return (
@@ -141,113 +130,58 @@ export const ServiceDetail = () => {
           </main>
 
           {/* Sidebar Column */}
-          <aside className="service-detail-page__sidebar">
-            {/* Direct Booking Card */}
-            <div className="service-booking-card">
-              <h3 className="service-booking-card__title">Request Service Quote</h3>
-              <p className="service-booking-card__subtitle">
-                Fill out the quick brief and our director will contact you within 2 hours.
-              </p>
+       {/* Other Services */}
+<section className="service-detail-page__other-services">
+  <div className="service-detail-page__other-services-header">
+    <div>
+      <span className="badge badge--gold">
+        EXPLORE MORE
+      </span>
 
-              {submitted ? (
-                <div className="service-booking-card__success">
-                  <FaCheckCircle />
-                  <h4>Quote Request Sent!</h4>
-                  <p>Our senior event planner will call you shortly on {formData.phone}.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="service-booking-card__form">
-                  <div className="form-group">
-                    <label htmlFor="name">Your Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="e.g. Anandha Kumar"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
+      <h2 className="service-detail-page__heading">
+        Discover Our Other Services
+      </h2>
 
-                  <div className="form-group">
-                    <label htmlFor="phone">Phone / WhatsApp</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      placeholder="+91 98765 43210"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
+      <p className="service-detail-page__text">
+        Explore our other event production services and find the right
+        solution for your next event.
+      </p>
+    </div>
 
-                  <div className="form-group">
-                    <label htmlFor="date">Tentative Event Date</label>
-                    <input
-                      type="date"
-                      id="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
+    <Link
+      to="/services"
+      className="service-detail-page__all-services"
+    >
+      View All Services
+      <FaChevronRight aria-hidden="true" />
+    </Link>
+  </div>
 
-                  <div className="form-group">
-                    <label htmlFor="city">City / Venue</label>
-                    <input
-                      type="text"
-                      id="city"
-                      name="city"
-                      placeholder="e.g. Coimbatore, Chennai"
-                      value={formData.city}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
+  <div className="service-detail-page__other-services-grid">
+    {otherServices.slice(0, 3).map((item) => (
+      <Link
+        key={item.id}
+        to={`/services/${item.slug}`}
+        className="service-detail-page__other-service-card"
+      >
+        <div className="service-detail-page__other-service-image">
+          <img src={item.image} alt={item.title} loading="lazy" />
+        </div>
 
-                  <div className="form-group">
-                    <label htmlFor="message">Event Notes (Optional)</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows="3"
-                      placeholder="Estimated crowd, preferred artists, venue size..."
-                      value={formData.message}
-                      onChange={handleInputChange}
-                    />
-                  </div>
+        <div className="service-detail-page__other-service-content">
+          <h3>{item.title}</h3>
 
-                  <Button type="submit" variant="primary" size="md" className="btn--full">
-                    Submit Quote Request
-                  </Button>
-                </form>
-              )}
+          <p>{item.shortDesc}</p>
 
-              <div className="service-booking-card__help">
-                <FaPhoneAlt />
-                <span>Urgent query? Call: </span>
-                <a href={`tel:${companyInfo.phone}`}>{companyInfo.phoneFormatted}</a>
-              </div>
-            </div>
-
-            {/* Other Services Navigation Widget */}
-            <div className="service-nav-widget">
-              <h4 className="service-nav-widget__title">Other Services</h4>
-              <ul className="service-nav-widget__list">
-                {otherServices.map((s) => (
-                  <li key={s.id}>
-                    <Link to={`/services/${s.slug}`} className="service-nav-widget__link">
-                      <span>{s.title}</span>
-                      <FaChevronRight />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </aside>
+          <span>
+            Explore Service
+            <FaArrowRight aria-hidden="true" />
+          </span>
+        </div>
+      </Link>
+    ))}
+  </div>
+</section>
         </div>
       </div>
     </div>
