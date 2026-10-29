@@ -66,8 +66,8 @@ export const Loader = ({ onFinish }) => {
             <BrandPrismMark size={52} />
           </div>
           <div className="app-loader__logo-text">
-            <span className="app-loader__logo-main">LUMINA</span>
-            <span className="app-loader__logo-sub">ENTERTAINMENTS</span>
+            <span className="app-loader__logo-main">Axis</span>
+            <span className="app-loader__logo-sub">Genral</span>
           </div>
         </div>
 
