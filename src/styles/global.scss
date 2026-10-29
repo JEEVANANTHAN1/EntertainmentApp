@@ -21,10 +21,9 @@ main.main-content {
   flex: 1 0 auto;
 }
 
-// Section snap points for smooth swipe navigation
+// Section margin offset for navbar clearance
 main section,
 footer.mediafox-footer {
-  scroll-snap-align: start;
   scroll-margin-top: 80px;
 }
 

@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { testimonials } from '../../../data/dummyData';
 import './Testimonials.scss';
 
 export const Testimonials = () => {
-  const [startIndex, setStartIndex] = useState(0);
+  const trackRef = useRef(null);
+  const isHoveredRef = useRef(false);
+  const [currentPage, setCurrentPage] = useState(0);
   const [cardsPerPage, setCardsPerPage] = useState(3);
 
-  // Responsive cards per page
+  // Responsive cards-per-page detection
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -25,23 +27,77 @@ export const Testimonials = () => {
   }, []);
 
   const totalPages = Math.ceil(testimonials.length / cardsPerPage);
-  const currentPage = Math.floor(startIndex / cardsPerPage);
 
+  // Synchronize active page dot indicator on scroll
+  const handleScroll = () => {
+    if (!trackRef.current) return;
+    const track = trackRef.current;
+    const card = track.firstElementChild;
+    if (!card) return;
+    const step = (card.offsetWidth + 24) * cardsPerPage;
+    const page = Math.round(track.scrollLeft / step);
+    setCurrentPage(Math.min(totalPages - 1, Math.max(0, page)));
+  };
+
+  // Smooth scroll to target page index
+  const scrollToPage = (pageIdx) => {
+    if (!trackRef.current) return;
+    const track = trackRef.current;
+    const card = track.firstElementChild;
+    if (!card) return;
+    const targetScroll = pageIdx * cardsPerPage * (card.offsetWidth + 24);
+    track.scrollTo({
+      left: targetScroll,
+      behavior: 'smooth'
+    });
+    setCurrentPage(pageIdx);
+  };
+
+  // Smooth scroll to previous testimonial card
   const handlePrev = () => {
-    setStartIndex((prev) => {
-      const nextIndex = prev - cardsPerPage;
-      return nextIndex < 0 ? Math.max(0, testimonials.length - cardsPerPage) : nextIndex;
-    });
+    if (!trackRef.current) return;
+    const track = trackRef.current;
+    const card = track.firstElementChild;
+    const step = card ? card.offsetWidth + 24 : 360;
+    if (track.scrollLeft <= 10) {
+      track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: -step, behavior: 'smooth' });
+    }
   };
 
+  // Smooth scroll to next testimonial card
   const handleNext = () => {
-    setStartIndex((prev) => {
-      const nextIndex = prev + cardsPerPage;
-      return nextIndex >= testimonials.length ? 0 : nextIndex;
-    });
+    if (!trackRef.current) return;
+    const track = trackRef.current;
+    const card = track.firstElementChild;
+    const step = card ? card.offsetWidth + 24 : 360;
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    if (track.scrollLeft >= maxScroll - 15) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      track.scrollBy({ left: step, behavior: 'smooth' });
+    }
   };
 
-  const visibleTestimonials = testimonials.slice(startIndex, startIndex + cardsPerPage);
+  // Autoplay smooth advancement every 5.5s (pauses on hover or touch)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isHoveredRef.current || !trackRef.current) return;
+      const track = trackRef.current;
+      const card = track.firstElementChild;
+      const step = card ? card.offsetWidth + 24 : 360;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+
+      if (track.scrollLeft >= maxScroll - 15) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    }, 5500);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="testimonials-section-home" aria-label="Client Testimonials">
@@ -60,11 +116,21 @@ export const Testimonials = () => {
           </div>
         </div>
 
-        {/* Carousel / Grid of Testimonials */}
-        <div className="testimonials-section-home__cards">
-          {visibleTestimonials.map((item, idx) => {
-            // Alternate card styling: even cards white, odd cards deep royal navy (matching original site)
-            const isDark = (startIndex + idx) % 2 === 1;
+        {/* Smooth Scrolling Testimonials Carousel Track */}
+        <div
+          ref={trackRef}
+          className="testimonials-section-home__cards"
+          data-lenis-prevent
+          onScroll={handleScroll}
+          onMouseEnter={() => { isHoveredRef.current = true; }}
+          onMouseLeave={() => { isHoveredRef.current = false; }}
+          onTouchStart={() => { isHoveredRef.current = true; }}
+          onTouchEnd={() => {
+            setTimeout(() => { isHoveredRef.current = false; }, 2000);
+          }}
+        >
+          {testimonials.map((item, idx) => {
+            const isDark = idx % 2 === 1;
 
             return (
               <div
@@ -97,7 +163,7 @@ export const Testimonials = () => {
           <button
             className="testimonials-section-home__nav-btn"
             onClick={handlePrev}
-            aria-label="Previous testimonials"
+            aria-label="Previous testimonial"
           >
             <FaChevronLeft />
           </button>
@@ -109,8 +175,8 @@ export const Testimonials = () => {
                 className={`testimonials-section-home__dot ${
                   pageIdx === currentPage ? 'testimonials-section-home__dot--active' : ''
                 }`}
-                onClick={() => setStartIndex(pageIdx * cardsPerPage)}
-                aria-label={`Go to slide page ${pageIdx + 1}`}
+                onClick={() => scrollToPage(pageIdx)}
+                aria-label={`Go to testimonial page ${pageIdx + 1}`}
               />
             ))}
           </div>
@@ -118,7 +184,7 @@ export const Testimonials = () => {
           <button
             className="testimonials-section-home__nav-btn"
             onClick={handleNext}
-            aria-label="Next testimonials"
+            aria-label="Next testimonial"
           >
             <FaChevronRight />
           </button>

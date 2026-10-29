@@ -6,7 +6,7 @@ import Loader from './components/Loader/Loader';
 import Navbar from './components/layout/Navbar/Navbar';
 import Footer from './components/layout/Footer/Footer';
 import ScrollToTop from './components/layout/ScrollToTop';
-import SmoothSectionScroll from './components/layout/SmoothSectionScroll';
+import SmoothScroll from './components/layout/SmoothScroll';
 import WhatsAppButton from './components/ui/WhatsAppButton/WhatsAppButton';
 
 // Pages
@@ -26,7 +26,7 @@ export function App() {
     <>
       <BrowserRouter>
         <ScrollToTop />
-        <SmoothSectionScroll />
+        <SmoothScroll />
         <div className="app-wrapper">
           <Navbar />
           <main className="main-content">
