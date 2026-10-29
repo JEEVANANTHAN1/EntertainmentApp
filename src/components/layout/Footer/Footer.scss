@@ -1,13 +1,13 @@
 @use '../../../styles/variables' as *;
 @use '../../../styles/mixins' as *;
 
-/* Authentic Media Fox Style Footer */
+/* Axis Themed Executive Footer */
 .mediafox-footer {
-  background: $color-secondary;
-  color: #FFFFFF;
+  background: #FFFFFF;
+  color: $color-text-secondary;
   padding-top: 70px;
   position: relative;
-  border-top: 3px solid $color-primary;
+  border-top: 1px solid $color-border;
 
   &__container {
     max-width: 1100px;
@@ -24,7 +24,7 @@
 
   &__brand {
     max-width: 720px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
   }
 
   &__logo {
@@ -32,19 +32,28 @@
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
   &__logo-badge {
-    width: 44px;
-    height: 44px;
-    background: $color-primary;
-    border-radius: 8px;
+    width: 46px;
+    height: 46px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
     @include flex-center;
-    color: #FFFFFF;
-    font-weight: 800;
-    font-size: 1.35rem;
-    box-shadow: 0 4px 12px rgba(243, 112, 33, 0.4);
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
+    transition: transform $transition-fast;
+
+    .brand-prism-mark {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  &__logo:hover &__logo-badge {
+    transform: scale(1.08);
   }
 
   &__logo-text {
@@ -54,25 +63,34 @@
   }
 
   &__logo-main {
-    font-size: 1.55rem;
+    font-size: 1.45rem;
     font-weight: 800;
-    letter-spacing: 0.1em;
-    color: #FFFFFF;
+    letter-spacing: 0.14em;
+    color: $color-primary;
     line-height: 1;
   }
 
   &__logo-sub {
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    color: $color-primary;
-    margin-top: 3px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    color: $color-secondary-dark;
+    text-transform: uppercase;
+    margin-top: 3.5px;
+  }
+
+  &__accent-line {
+    width: 56px;
+    height: 2px;
+    background: $color-primary;
+    margin: 16px auto 20px;
+    display: block;
   }
 
   &__text {
-    font-size: 1.05rem;
-    line-height: 1.75;
-    color: #CBD5E1;
+    font-size: 1.02rem;
+    line-height: 1.8;
+    color: $color-text-secondary;
     margin: 0;
   }
 
@@ -87,22 +105,23 @@
     margin: 0 0 35px 0;
 
     li a {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #FFFFFF;
+      background: #FFFFFF;
+      border: 1px solid #cbd5d2;
+      color: $color-primary;
       @include flex-center;
-      font-size: 1rem;
+      font-size: 1.05rem;
       text-decoration: none;
-      transition: all 0.25s ease;
+      transition: all $transition-fast;
 
       &:hover {
         background: $color-primary;
         border-color: $color-primary;
+        color: #FFFFFF;
         transform: translateY(-3px);
-        box-shadow: 0 4px 14px rgba(243, 112, 33, 0.4);
+        box-shadow: $shadow-button-primary;
       }
     }
   }
@@ -112,7 +131,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 24px;
     margin-bottom: 50px;
     flex-wrap: wrap;
   }
@@ -122,23 +141,23 @@
     align-items: center;
     gap: 14px;
     padding: 12px 24px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50px;
-    color: #FFFFFF;
+    background: $color-dark-elevated;
+    border: 1px solid $color-border;
+    border-radius: $radius-md;
+    color: $color-text;
     text-decoration: none;
-    transition: all 0.25s ease;
+    transition: all $transition-fast;
 
     &:hover {
-      background: rgba(243, 112, 33, 0.15);
+      background: rgba($color-primary, 0.04);
       border-color: $color-primary;
       transform: translateY(-2px);
     }
   }
 
   &__contact-icon {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     background: $color-primary;
     color: #FFFFFF;
@@ -153,24 +172,24 @@
     text-align: left;
 
     strong {
-      font-size: 0.78rem;
-      color: #94A3B8;
+      font-size: 0.74rem;
+      color: $color-text-muted;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.06em;
     }
 
     span {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
-      color: #FFFFFF;
+      color: $color-primary;
     }
   }
 
   /* Footer Bottom */
   &__bottom {
-    background: #050E22;
+    background: $color-dark-elevated;
     padding: 22px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid $color-border;
   }
 
   &__bottom-container {
@@ -189,11 +208,11 @@
   }
 
   &__powered {
-    font-size: 0.9rem;
-    color: #94A3B8;
+    font-size: 0.88rem;
+    color: $color-text-muted;
 
     strong {
-      color: #FFFFFF;
+      color: $color-primary;
       font-weight: 600;
     }
   }
@@ -201,8 +220,8 @@
   &__copyright {
     p {
       margin: 0;
-      font-size: 0.9rem;
-      color: #94A3B8;
+      font-size: 0.88rem;
+      color: $color-text-muted;
 
       a {
         color: $color-primary;
@@ -210,6 +229,7 @@
         font-weight: 600;
 
         &:hover {
+          color: $color-secondary-dark;
           text-decoration: underline;
         }
       }

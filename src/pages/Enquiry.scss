@@ -3,7 +3,7 @@
 
 .enquiry-page {
   background: #FFFFFF;
-  color: $color-secondary;
+  color: $color-primary;
 }
 
 .enquiry-form-section {
@@ -33,6 +33,7 @@
   border-radius: $radius-lg;
   padding: 50px 45px;
   box-shadow: $shadow-md;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   @include respond-to(tablet) {
     padding: 35px 25px;
@@ -73,39 +74,7 @@
     }
   }
 
-  .form-group {
-    @include flex-column;
-    gap: 8px;
-
-    label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: $color-text;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    input, select, textarea {
-      background: #F8F9FD;
-      border: 1px solid rgba(15, 23, 42, 0.12);
-      border-radius: $radius-sm;
-      padding: 13px 16px;
-      color: $color-text;
-      font-size: 0.95rem;
-      transition: all $transition-fast;
-
-      &:focus {
-        border-color: $color-primary;
-        background: #FFFFFF;
-        box-shadow: $shadow-input-focus;
-      }
-
-      option {
-        background: #FFFFFF;
-        color: $color-text;
-      }
-    }
-  }
+  @include form-field-luxury;
 
   &__actions {
     display: flex;
@@ -171,6 +140,16 @@
   border-radius: $radius-lg;
   padding: 30px 26px;
   box-shadow: $shadow-sm;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform $transition-normal, box-shadow $transition-normal;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-md;
+  }
+
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
 
   h3 {
     font-size: 1.35rem;

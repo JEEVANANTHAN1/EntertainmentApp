@@ -2,9 +2,9 @@
 @use '../../../styles/mixins' as *;
 
 .orange-stats-ribbon {
-  background: linear-gradient(90deg, #F37021 0%, #FA8231 100%);
+  background: linear-gradient(90deg, $color-primary 0%, $color-primary-dark 100%);
   padding: 38px 6%;
-  box-shadow: 0 8px 24px rgba(243, 112, 33, 0.25);
+  box-shadow: 0 8px 24px rgba(23, 59, 53, 0.25);
   position: relative;
   z-index: 5;
 
@@ -41,6 +41,17 @@
   display: flex;
   align-items: center;
   gap: 16px;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform $transition-fast;
+
+  &:hover {
+    transform: translateY(-2px);
+
+    .orange-stat-item__circle {
+      transform: scale(1.06);
+      border-color: $color-secondary-light;
+    }
+  }
 
   @include respond-to(mobile) {
     gap: 12px;
@@ -50,16 +61,12 @@
     width: 68px;
     height: 68px;
     border-radius: 50%;
-    background: #081735;
-    border: 3px dashed rgba(255, 255, 255, 0.6);
+    background: $color-primary-dark;
+    border: 2px solid $color-secondary;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     @include flex-center;
     flex-shrink: 0;
-    transition: transform $transition-fast;
-
-    &:hover {
-      transform: scale(1.08);
-    }
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
 
     @include respond-to(tablet) {
       width: 60px;

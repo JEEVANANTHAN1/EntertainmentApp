@@ -30,7 +30,7 @@
   &__title {
     font-size: 2.2rem;
     font-weight: 700;
-    color: $color-secondary;
+    color: $color-primary;
     margin-bottom: 8px;
 
     @include respond-to(tablet) {
@@ -50,14 +50,15 @@
   width: 300px;
   max-width: 100%;
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   &:hover {
     transform: translateY(-6px);
 
     .team-member-card__image-wrap {
-      border-color: $color-primary;
-      box-shadow: 0 10px 25px rgba(243, 112, 33, 0.25);
+      border-color: $color-secondary;
+      box-shadow: 0 10px 25px rgba(23, 59, 53, 0.22);
     }
   }
 
@@ -68,7 +69,7 @@
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid #F1F3F5;
-    background: #081735;
+    background: $color-primary-dark;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
     transition: all 0.35s ease;
 
@@ -86,7 +87,7 @@
   &__name {
     font-size: 1.25rem;
     font-weight: 700;
-    color: $color-secondary;
+    color: $color-primary;
     margin-bottom: 6px;
   }
 

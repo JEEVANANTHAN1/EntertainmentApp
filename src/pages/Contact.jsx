@@ -126,7 +126,7 @@ export const Contact = () => {
                 <form onSubmit={handleSubmit} className="contact-form">
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="name">Your Name *</label>
+                      <label htmlFor="name">Your Name <span className="required-star">*</span></label>
                       <input
                         type="text"
                         id="name"
@@ -139,7 +139,7 @@ export const Contact = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="email">Email Address *</label>
+                      <label htmlFor="email">Email Address <span className="required-star">*</span></label>
                       <input
                         type="email"
                         id="email"
@@ -166,7 +166,7 @@ export const Contact = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="subject">Subject / Purpose *</label>
+                      <label htmlFor="subject">Subject / Purpose <span className="required-star">*</span></label>
                       <input
                         type="text"
                         id="subject"
@@ -180,7 +180,7 @@ export const Contact = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="message">Your Message *</label>
+                    <label htmlFor="message">Your Message <span className="required-star">*</span></label>
                     <textarea
                       id="message"
                       name="message"

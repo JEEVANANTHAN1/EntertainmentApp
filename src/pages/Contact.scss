@@ -3,7 +3,7 @@
 
 .contact-page {
   background: #FFFFFF;
-  color: $color-secondary;
+  color: $color-primary;
 }
 
 // --- INFO STRIP ---
@@ -32,17 +32,23 @@
 
 .contact-card {
   background: #FFFFFF;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
   padding: 30px 24px;
   @include flex-column;
   align-items: center;
   text-align: center;
   box-shadow: $shadow-sm;
   transition: all $transition-normal;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  &:nth-child(1) { animation-delay: 0.05s; }
+  &:nth-child(2) { animation-delay: 0.12s; }
+  &:nth-child(3) { animation-delay: 0.19s; }
+  &:nth-child(4) { animation-delay: 0.26s; }
 
   &:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
     border-color: $color-border-hover;
     box-shadow: $shadow-md;
   }
@@ -68,9 +74,9 @@
     }
 
     &--location {
-      background: rgba($color-secondary, 0.1);
-      border: 1px solid rgba($color-secondary, 0.3);
-      color: $color-secondary;
+      background: rgba($color-secondary, 0.12);
+      border: 1px solid rgba($color-secondary, 0.35);
+      color: $color-secondary-dark;
     }
 
     &--hours {
@@ -83,7 +89,7 @@
   &__title {
     font-size: 1.15rem;
     font-weight: 700;
-    color: $color-text;
+    color: $color-primary;
     margin-bottom: 6px;
   }
 
@@ -113,7 +119,7 @@
 // --- MAIN SECTION ---
 .contact-main-section {
   padding: 85px 0;
-  background: #F8F9FB;
+  background: $color-dark-elevated;
 
   &__container {
     @include container;
@@ -139,6 +145,7 @@
   border-radius: $radius-lg;
   padding: 45px 40px;
   box-shadow: $shadow-sm;
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   @include respond-to(mobile) {
     padding: 30px 20px;
@@ -173,34 +180,7 @@
     }
   }
 
-  .form-group {
-    @include flex-column;
-    gap: 6px;
-
-    label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: $color-text;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    input, textarea {
-      background: #F8F9FD;
-      border: 1px solid rgba(15, 23, 42, 0.12);
-      border-radius: $radius-sm;
-      padding: 12px 14px;
-      color: $color-text;
-      font-size: 0.92rem;
-      transition: all $transition-fast;
-
-      &:focus {
-        border-color: $color-primary;
-        background: #FFFFFF;
-        box-shadow: $shadow-input-focus;
-      }
-    }
-  }
+  @include form-field-luxury;
 
   &__actions {
     display: flex;
@@ -254,6 +234,8 @@
   border-radius: $radius-lg;
   padding: 35px 30px;
   box-shadow: $shadow-sm;
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.15s;
 
   @include respond-to(mobile) {
     padding: 25px 20px;

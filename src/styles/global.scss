@@ -1,11 +1,12 @@
 // ==============================================================================
-// GLOBAL MAIN STYLESHEET — LIGHT THEME
+// GLOBAL MAIN STYLESHEET — AXIS THEME
 // ==============================================================================
 @forward './variables';
 @forward './mixins';
 @forward './animations';
 @use './variables' as *;
 @use './reset';
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap";
 
 .app-wrapper {
   position: relative;
@@ -20,6 +21,13 @@ main.main-content {
   flex: 1 0 auto;
 }
 
+// Section snap points for smooth swipe navigation
+main section,
+footer.mediafox-footer {
+  scroll-snap-align: start;
+  scroll-margin-top: 80px;
+}
+
 // Utility classes
 .text-gold {
   color: var(--color-secondary);
@@ -32,31 +40,43 @@ main.main-content {
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: $radius-sm;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  background: rgba($color-primary, 0.08);
-  border: 1px solid rgba($color-primary, 0.25);
+  background: rgba($color-primary, 0.05);
+  border: 1px solid rgba($color-primary, 0.15);
   color: $color-primary;
   margin-bottom: 12px;
 
+  &::before {
+    content: "";
+    width: 20px;
+    height: 2px;
+    background: $color-secondary;
+    display: inline-block;
+  }
+
   &--gold {
-    background: rgba($color-primary, 0.1);
-    border-color: rgba($color-primary, 0.35);
-    color: $color-primary;
+    background: rgba($color-secondary, 0.12);
+    border-color: rgba($color-secondary, 0.35);
+    color: $color-secondary-dark;
+
+    &::before {
+      background: $color-primary;
+    }
   }
 }
 
-// Media Fox signature colored dashes under headings
+// Axis signature gold & forest dashes under headings
 .title-dash {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
   margin: 10px auto 20px;
 
   &--left {
@@ -65,10 +85,10 @@ main.main-content {
   }
 
   span {
-    height: 4px;
-    border-radius: 2px;
+    height: 2px;
+    border-radius: 1px;
   }
-  span:nth-child(1) { width: 16px; background-color: $color-primary; }
-  span:nth-child(2) { width: 8px;  background-color: $color-secondary; }
-  span:nth-child(3) { width: 14px; background-color: #FFB800; }
+  span:nth-child(1) { width: 30px; background-color: $color-secondary; }
+  span:nth-child(2) { width: 12px; background-color: $color-primary; }
+  span:nth-child(3) { width: 6px;  background-color: $color-primary; }
 }

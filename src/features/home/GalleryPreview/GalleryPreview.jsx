@@ -44,10 +44,9 @@ export const GalleryPreview = () => {
         <div className="gallery-section-home__action">
           <Button
             to="/gallery"
-            variant="secondary"
+            variant="primary"
             size="lg"
             icon={<FaArrowRight />}
-            style={{ background: '#081735', color: '#FFFFFF', border: 'none' }}
           >
             Explore More
           </Button>

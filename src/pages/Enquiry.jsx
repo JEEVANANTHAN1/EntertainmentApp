@@ -100,7 +100,7 @@ export const Enquiry = () => {
                 <form onSubmit={handleSubmit} className="enquiry-form">
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="fullName">Full Name *</label>
+                      <label htmlFor="fullName">Full Name <span className="required-star">*</span></label>
                       <input
                         type="text"
                         id="fullName"
@@ -113,7 +113,7 @@ export const Enquiry = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="phone">Phone / WhatsApp Number *</label>
+                      <label htmlFor="phone">Phone / WhatsApp Number <span className="required-star">*</span></label>
                       <input
                         type="tel"
                         id="phone"
@@ -128,7 +128,7 @@ export const Enquiry = () => {
 
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="email">Email Address *</label>
+                      <label htmlFor="email">Email Address <span className="required-star">*</span></label>
                       <input
                         type="email"
                         id="email"
@@ -141,7 +141,7 @@ export const Enquiry = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="serviceCategory">Service Vertical *</label>
+                      <label htmlFor="serviceCategory">Service Vertical <span className="required-star">*</span></label>
                       <select
                         id="serviceCategory"
                         name="serviceCategory"
@@ -161,7 +161,7 @@ export const Enquiry = () => {
 
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="eventDate">Tentative Event Date *</label>
+                      <label htmlFor="eventDate">Tentative Event Date <span className="required-star">*</span></label>
                       <input
                         type="date"
                         id="eventDate"
@@ -173,7 +173,7 @@ export const Enquiry = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="city">City / Destination *</label>
+                      <label htmlFor="city">City / Destination <span className="required-star">*</span></label>
                       <input
                         type="text"
                         id="city"

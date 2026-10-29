@@ -8,10 +8,11 @@
   align-items: center;
   padding: 50px 45px;
   background: #FFFFFF;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
   box-shadow: $shadow-sm;
   transition: all $transition-normal;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   &:hover {
     border-color: $color-border-hover;
@@ -107,7 +108,7 @@
   &__title {
     font-size: 2.2rem;
     font-weight: 700;
-    color: $color-text;
+    color: $color-primary;
     line-height: 1.25;
     margin: 10px 0 16px;
 
@@ -117,8 +118,9 @@
 
     a {
       color: inherit;
+      transition: color $transition-fast;
       &:hover {
-        color: $color-primary;
+        color: $color-primary-dark;
       }
     }
   }

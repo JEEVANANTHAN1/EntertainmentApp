@@ -82,15 +82,15 @@
     right: 68px;
     top: 50%;
     transform: translateY(-50%) translateX(6px);
-    background: #081735;
+    background: $color-primary-dark;
     color: #FFFFFF;
     padding: 7px 15px;
-    border-radius: 50px;
+    border-radius: $radius-sm;
     font-size: 0.82rem;
     font-weight: 600;
     white-space: nowrap;
     border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 24px rgba(8, 23, 53, 0.3);
+    box-shadow: 0 8px 24px rgba(16, 43, 39, 0.3);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.22s ease, transform 0.22s ease;

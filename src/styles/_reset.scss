@@ -11,11 +11,21 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 15px;
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 80px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+
+  @include respond-to(tablet) {
+    font-size: 14.5px;
+  }
+
+  @include respond-to(mobile) {
+    font-size: 14px;
+  }
 }
 
 body {

@@ -24,14 +24,33 @@
 
   &__visual {
     width: 100%;
+    position: relative;
+    padding: 0 16px 16px 0;
+    animation: fadeIn 0.6s ease both;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 16px 0 0 16px;
+      border: 1px solid $color-secondary;
+      border-radius: $radius-lg;
+      pointer-events: none;
+      z-index: 1;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    &:hover::after {
+      transform: translate(6px, 6px);
+    }
   }
 
   &__frame {
-    border-radius: $radius-md;
+    border-radius: $radius-lg;
     overflow: hidden;
-    box-shadow: 0 16px 40px rgba(8, 23, 53, 0.12);
-    border: 1px solid rgba(8, 23, 53, 0.08);
+    box-shadow: $shadow-md;
+    border: 1px solid $color-border;
     position: relative;
+    z-index: 2;
     max-height: 480px;
 
     img {
@@ -39,7 +58,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.6s ease;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     &:hover img {
@@ -49,23 +68,34 @@
 
   &__content {
     @include flex-column;
+    animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
   &__subtitle {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: $color-primary;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    &::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: $color-secondary;
+    }
   }
 
   &__title {
     font-size: 2.6rem;
-    font-weight: 800;
-    color: $color-secondary;
+    font-weight: 700;
+    color: $color-primary;
     line-height: 1.2;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
 
     @include respond-to(mobile) {
       font-size: 2rem;
@@ -73,7 +103,7 @@
   }
 
   &__desc {
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     color: $color-text-secondary;
     line-height: 1.8;
     margin-bottom: 30px;

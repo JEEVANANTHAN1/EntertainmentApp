@@ -18,6 +18,7 @@ import {
 import { companyInfo, services } from '../../../data/dummyData';
 import { useScrollPosition } from '../../../hooks/useScrollPosition';
 import Button from '../../ui/Button/Button';
+import BrandPrismMark from '../../ui/BrandPrismMark/BrandPrismMark';
 import './Navbar.scss';
 
 export const Navbar = () => {
@@ -62,7 +63,7 @@ export const Navbar = () => {
           {/* Brand Logo */}
           <Link to="/" className="site-header__logo" aria-label="Lumina Entertainments Home">
             <div className="site-header__logo-icon">
-              <span>L</span>
+              <BrandPrismMark />
             </div>
             <div className="site-header__logo-text">
               <span className="site-header__logo-main">LUMINA</span>
@@ -175,7 +176,7 @@ export const Navbar = () => {
             <FaTimes />
           </button>
           <div className="site-header__logo">
-            <div className="site-header__logo-icon"><span>L</span></div>
+            <div className="site-header__logo-icon"><BrandPrismMark /></div>
             <div className="site-header__logo-text">
               <span className="site-header__logo-main">LUMINA</span>
               <span className="site-header__logo-sub">ENTERTAINMENTS</span>
@@ -222,7 +223,7 @@ export const Navbar = () => {
           <div className="site-header__mobile-top">
             <div className="site-header__logo">
               <div className="site-header__logo-icon">
-                <span>L</span>
+                <BrandPrismMark />
               </div>
               <div className="site-header__logo-text">
                 <span className="site-header__logo-main">LUMINA</span>

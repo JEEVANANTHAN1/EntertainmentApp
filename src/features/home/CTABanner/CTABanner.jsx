@@ -17,7 +17,7 @@ export const CTABanner = () => {
 
           <div className="memorable-cta-section__action-col">
             <h3 className="memorable-cta-section__subhead">Make your Event Memorable!</h3>
-            <Button to="/enquiry" variant="primary" size="lg" icon={<FaArrowRight />} style={{ background: '#F37021', color: '#FFFFFF', border: 'none' }}>
+            <Button to="/enquiry" variant="gold" size="lg" icon={<FaArrowRight />}>
               Book Now
             </Button>
           </div>

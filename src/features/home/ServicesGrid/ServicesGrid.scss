@@ -21,7 +21,7 @@
   &__title {
     font-size: 2.5rem;
     font-weight: 800;
-    color: $color-secondary;
+    color: $color-primary;
     letter-spacing: -0.02em;
 
     @include respond-to(mobile) {
@@ -51,21 +51,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform $transition-fast;
+  transition: transform $transition-normal, filter $transition-normal;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   &:hover {
     transform: translateY(-6px);
 
     .service-framed-card__outer-frame::before {
-      transform: translate(14px, 14px);
+      transform: translate(6px, 6px);
+      border-color: $color-secondary;
     }
 
     .service-framed-card__inner-frame img {
-      transform: scale(1.05);
+      transform: scale(1.06);
     }
 
     .service-framed-card__title {
-      color: $color-primary;
+      color: $color-primary-dark;
     }
   }
 
@@ -74,7 +76,7 @@
     width: 100%;
     margin-bottom: 22px;
 
-    // Offset orange frame behind
+    // Offset gold frame behind
     &::before {
       content: '';
       position: absolute;
@@ -82,7 +84,7 @@
       left: 10px;
       right: -10px;
       bottom: -10px;
-      border: 3px solid $color-primary;
+      border: 2px solid $color-secondary;
       border-radius: $radius-sm;
       transition: transform $transition-normal;
       z-index: 1;
@@ -97,9 +99,9 @@
     overflow: hidden;
     height: 270px;
     width: 100%;
-    background: #081735;
-    border: 3px solid #081735;
-    box-shadow: 0 10px 25px rgba(8, 23, 53, 0.12);
+    background: $color-primary-dark;
+    border: 1px solid $color-border;
+    box-shadow: $shadow-md;
 
     @include respond-to(mobile) {
       height: 230px;
@@ -117,7 +119,7 @@
   &__title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: $color-secondary;
+    color: $color-primary;
     text-align: center;
     transition: color $transition-fast;
     margin-top: 8px;

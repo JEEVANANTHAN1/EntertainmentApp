@@ -83,9 +83,9 @@
   transition: all $transition-normal;
 
   &:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
     border-color: $color-border-hover;
-    box-shadow: $shadow-glow-primary;
+    box-shadow: $shadow-md;
   }
 }
 
@@ -96,7 +96,7 @@
     height: $width;
   }
   &::-webkit-scrollbar-track {
-    background: #EDF1F7;
+    background: #F0F3EF;
   }
   &::-webkit-scrollbar-thumb {
     background: $thumb-color;
@@ -104,5 +104,116 @@
   }
   &::-webkit-scrollbar-thumb:hover {
     background: $color-primary-dark;
+  }
+}
+
+// --- LUXURY ARCHITECTURAL FORM INPUTS (AXIS THEME) ---
+@mixin form-field-luxury {
+  .form-group {
+    @include flex-column;
+    gap: 7px;
+    position: relative;
+
+    label {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #1E293B;
+      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      transition: color $transition-fast;
+
+      .required-star,
+      .required {
+        color: $color-secondary-dark;
+        font-weight: 700;
+        margin-left: 2px;
+      }
+    }
+
+    &:focus-within label {
+      color: $color-primary;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      min-height: 48px;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: $radius-md;
+      padding: 12px 16px;
+      color: $color-text;
+      font-size: 0.94rem;
+      font-family: $font-body;
+      line-height: 1.5;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+      transition: border-color $transition-fast, box-shadow $transition-fast, background-color $transition-fast;
+
+      &::placeholder {
+        color: #94A3B8;
+        font-weight: 400;
+        font-size: 0.91rem;
+      }
+
+      &:hover {
+        border-color: rgba(23, 59, 53, 0.38);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $color-primary;
+        background: #FFFFFF;
+        box-shadow: 0 0 0 3.5px rgba(23, 59, 53, 0.12), 0 2px 8px rgba(23, 59, 53, 0.06);
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px #FFFFFF inset !important;
+        -webkit-text-fill-color: $color-text !important;
+      }
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23173b35' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 14px;
+      padding-right: 44px;
+      cursor: pointer;
+
+      option {
+        background: #FFFFFF;
+        color: $color-text;
+        padding: 8px 12px;
+      }
+    }
+
+    input[type="date"] {
+      cursor: pointer;
+      color: $color-text;
+
+      &::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        opacity: 0.65;
+        transition: opacity $transition-fast;
+        filter: invert(19%) sepia(21%) saturate(1147%) hue-rotate(124deg) brightness(92%) contrast(88%);
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+      line-height: 1.6;
+    }
   }
 }

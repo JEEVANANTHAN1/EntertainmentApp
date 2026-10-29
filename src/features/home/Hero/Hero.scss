@@ -8,7 +8,7 @@
   max-height: 850px;
   width: 100%;
   overflow: hidden;
-  background-color: #081735;
+  background-color: $color-primary-dark;
 
   @include respond-to(tablet) {
     height: 70vh;
@@ -49,10 +49,10 @@
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(8, 23, 53, 0.45) 0%,
-      rgba(8, 23, 53, 0.1) 40%,
-      rgba(8, 23, 53, 0.4) 85%,
-      rgba(8, 23, 53, 0.7) 100%
+      rgba(16, 43, 39, 0.45) 0%,
+      rgba(16, 43, 39, 0.1) 40%,
+      rgba(16, 43, 39, 0.45) 85%,
+      rgba(16, 43, 39, 0.75) 100%
     );
   }
 }

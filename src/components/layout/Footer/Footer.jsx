@@ -11,6 +11,7 @@ import {
   FaWhatsapp
 } from 'react-icons/fa';
 import { companyInfo } from '../../../data/dummyData';
+import BrandPrismMark from '../../ui/BrandPrismMark/BrandPrismMark';
 import './Footer.scss';
 
 export const Footer = () => {
@@ -22,7 +23,7 @@ export const Footer = () => {
             <div className="mediafox-footer__brand">
               <Link to="/" className="mediafox-footer__logo">
                 <div className="mediafox-footer__logo-badge">
-                  <span>L</span>
+                  <BrandPrismMark size={46} />
                 </div>
                 <div className="mediafox-footer__logo-text">
                   <span className="mediafox-footer__logo-main">LUMINA</span>

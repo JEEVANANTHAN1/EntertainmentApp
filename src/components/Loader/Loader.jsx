@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import BrandPrismMark from '../ui/BrandPrismMark/BrandPrismMark';
 import './Loader.scss';
 
 export const Loader = ({ onFinish }) => {
@@ -62,7 +63,7 @@ export const Loader = ({ onFinish }) => {
           style={flyTransform ? { transform: flyTransform } : undefined}
         >
           <div className="app-loader__logo-icon">
-            <span>L</span>
+            <BrandPrismMark size={52} />
           </div>
           <div className="app-loader__logo-text">
             <span className="app-loader__logo-main">LUMINA</span>

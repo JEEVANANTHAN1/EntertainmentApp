@@ -24,8 +24,8 @@
   &--scrolled {
     .site-header__nav {
       background: rgba(255, 255, 255, 0.98);
-      box-shadow: 0 4px 20px rgba(8, 23, 53, 0.08);
-      border-bottom: 1px solid rgba(8, 23, 53, 0.08);
+      box-shadow: $shadow-sm;
+      border-bottom: 1px solid $color-border;
       padding: 12px 6%;
 
       .site-header__link {
@@ -37,11 +37,19 @@
       }
 
       .site-header__logo-main {
-        color: $color-secondary;
+        color: $color-primary;
+      }
+
+      .site-header__logo-sub {
+        color: $color-secondary-dark;
       }
 
       .site-header__hamburger {
-        color: $color-secondary;
+        color: $color-primary;
+      }
+
+      .site-header__drawer-btn {
+        color: $color-primary;
       }
     }
   }
@@ -60,19 +68,25 @@
   }
 
   &__logo-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: $radius-sm;
-    background: $gradient-primary;
-    box-shadow: $shadow-button-primary;
+    width: 42px;
+    height: 42px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
     @include flex-center;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.22));
+    transition: transform $transition-fast, filter $transition-fast;
 
-    span {
-      font-family: $font-heading;
-      font-size: 1.6rem;
-      font-weight: 900;
-      color: #FFFFFF;
+    .brand-prism-mark {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
+  }
+
+  &:hover &__logo-icon {
+    transform: scale(1.08);
+    filter: drop-shadow(0 4px 14px rgba(201, 169, 110, 0.4));
   }
 
   &__logo-text {
@@ -80,10 +94,10 @@
   }
 
   &__logo-main {
-    font-family: $font-accent;
-    font-size: 1.45rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    font-family: $font-heading;
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
     color: #FFFFFF;
     line-height: 1;
     transition: color $transition-fast;
@@ -91,12 +105,13 @@
 
   &__logo-sub {
     font-family: $font-body;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    color: $color-primary;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: $color-secondary;
     text-transform: uppercase;
-    margin-top: 2px;
+    margin-top: 3.5px;
+    transition: color $transition-fast;
   }
 
   // --- MENU ITEMS ---
@@ -124,8 +139,9 @@
 
   &__link {
     font-family: $font-body;
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     color: #FFFFFF;
     text-decoration: none;
     transition: all $transition-fast;
@@ -133,7 +149,7 @@
     position: relative;
 
     &:hover, &--active {
-      color: $color-primary;
+      color: $color-secondary;
     }
 
     &--active::after {
@@ -143,13 +159,13 @@
       left: 0;
       width: 100%;
       height: 2px;
-      background: $color-primary;
+      background: $color-secondary;
       border-radius: $radius-full;
     }
   }
 
   &__dropdown-caret {
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     transition: transform $transition-fast;
   }
 
@@ -160,18 +176,18 @@
   // Dropdown Menu
   &__dropdown {
     position: absolute;
-    top: calc(100% + 12px);
+    top: calc(100% + 14px);
     left: -20px;
-    width: 280px;
+    width: 290px;
     background: #FFFFFF;
-    border: 1px solid rgba(8, 23, 53, 0.08);
+    border: 1px solid $color-border;
     border-radius: $radius-md;
-    box-shadow: 0 12px 36px rgba(8, 23, 53, 0.12);
-    padding: 12px;
+    box-shadow: 0 16px 36px rgba(23, 59, 53, 0.12);
+    padding: 10px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px);
-    transition: all $transition-fast;
+    transform: translateY(8px);
+    transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s;
     z-index: $z-dropdown;
 
     &--open {
@@ -184,7 +200,7 @@
   &__dropdown-grid {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
   }
 
   &__dropdown-item {
@@ -199,6 +215,16 @@
     &:hover {
       background: $color-dark-hover;
       transform: translateX(4px);
+
+      .site-header__dropdown-title {
+        color: $color-primary;
+      }
+
+      .site-header__dropdown-icon {
+        background: $color-primary;
+        color: #FFFFFF;
+        transform: scale(1.08);
+      }
     }
   }
 
@@ -206,17 +232,19 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: rgba($color-primary, 0.1);
+    background: rgba($color-primary, 0.08);
     color: $color-primary;
     @include flex-center;
     font-size: 0.95rem;
     flex-shrink: 0;
+    transition: all $transition-fast;
   }
 
   &__dropdown-title {
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    color: $color-secondary;
+    color: $color-text; // Deep dark readable text!
+    transition: color $transition-fast;
   }
 
   // Actions
@@ -229,17 +257,18 @@
   &__drawer-btn {
     background: transparent;
     border: none;
-    color: $color-primary;
+    color: #FFFFFF;
     font-size: 1.45rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 6px;
-    transition: transform $transition-fast;
+    transition: transform $transition-fast, color $transition-fast;
 
     &:hover {
       transform: scale(1.15);
+      color: $color-secondary;
     }
   }
 
@@ -299,17 +328,18 @@
       margin-bottom: 24px;
 
       .site-header__logo-icon {
-        width: 44px;
-        height: 44px;
-        background: $color-primary;
-        border-radius: 8px;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 2px solid $color-secondary;
+        background: #FFFFFF;
+        box-shadow: $shadow-sm;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #FFFFFF;
-        font-size: 1.5rem;
-        font-weight: 800;
-        box-shadow: 0 4px 14px rgba(243, 112, 33, 0.35);
+        color: $color-primary;
+        font-size: 1.45rem;
+        font-weight: 700;
         flex-shrink: 0;
       }
 
@@ -323,7 +353,7 @@
         font-size: 1.45rem;
         font-weight: 800;
         letter-spacing: 0.12em;
-        color: $color-secondary !important;
+        color: $color-primary !important;
         line-height: 1;
       }
 
@@ -331,14 +361,14 @@
         font-size: 0.65rem;
         font-weight: 700;
         letter-spacing: 0.22em;
-        color: $color-primary;
+        color: $color-secondary-dark;
         margin-top: 4px;
       }
     }
 
     h4 {
       font-size: 1.4rem;
-      color: $color-secondary;
+      color: $color-primary;
       margin-bottom: 10px;
       font-weight: 800;
       letter-spacing: -0.01em;
@@ -368,7 +398,7 @@
   }
 
   &__quick-info {
-    border-top: 1px solid rgba(8, 23, 53, 0.08);
+    border-top: 1px solid $color-border;
     padding-top: 22px;
     display: flex;
     flex-direction: column;
@@ -406,7 +436,7 @@
     span, a {
       font-size: 0.92rem;
       font-weight: 600;
-      color: $color-secondary;
+      color: $color-primary;
       line-height: 1.4;
       word-break: break-word;
 
@@ -434,7 +464,7 @@
     justify-content: center !important;
     text-align: center !important;
     padding: 14px 20px !important;
-    border-radius: 50px !important;
+    border-radius: $radius-md !important;
     font-size: 0.95rem !important;
     font-weight: 700 !important;
   }
@@ -461,7 +491,7 @@
   &__mobile-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(8, 23, 53, 0.6);
+    background: rgba(16, 43, 39, 0.65);
     backdrop-filter: blur(6px);
   }
 
@@ -487,10 +517,10 @@
     @include flex-between;
     margin-bottom: 24px;
     padding-bottom: 18px;
-    border-bottom: 1px solid rgba(8, 23, 53, 0.08);
+    border-bottom: 1px solid $color-border;
 
     .site-header__logo-main {
-      color: $color-secondary;
+      color: $color-primary;
     }
   }
 
@@ -522,7 +552,7 @@
     justify-content: space-between;
     padding: 12px 14px;
     border-radius: $radius-sm;
-    font-size: 1.02rem;
+    font-size: 0.94rem;
     font-weight: 600;
     color: $color-text-secondary;
     text-decoration: none;
@@ -590,7 +620,7 @@
   &__mobile-footer {
     margin-top: auto;
     padding-top: 24px;
-    border-top: 1px solid rgba(8, 23, 53, 0.08);
+    border-top: 1px solid $color-border;
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -603,7 +633,7 @@
     justify-content: center !important;
     text-align: center !important;
     padding: 14px 20px !important;
-    border-radius: 50px !important;
+    border-radius: $radius-md !important;
     font-size: 0.95rem !important;
     font-weight: 700 !important;
   }
@@ -619,9 +649,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 0.86rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    color: $color-secondary;
+    color: $color-primary;
     text-decoration: none;
     transition: color $transition-fast;
 
@@ -632,17 +662,17 @@
     }
 
     span {
-      color: $color-secondary;
+      color: $color-primary;
       font-weight: 600;
       white-space: nowrap;
       transition: color $transition-fast;
     }
 
     &:hover {
-      color: $color-primary;
+      color: $color-secondary-dark;
 
       span {
-        color: $color-primary;
+        color: $color-secondary-dark;
       }
     }
   }

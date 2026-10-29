@@ -3,7 +3,7 @@
 
 .events-page {
   background: #FFFFFF;
-  color: $color-secondary;
+  color: $color-primary;
 }
 
 .events-list-section {
@@ -17,8 +17,9 @@
   &__filters {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 45px;
+    flex-wrap: wrap;
   }
 
   &__grid {
@@ -37,52 +38,59 @@
 }
 
 .event-filter-pill {
-  padding: 8px 22px;
-  border-radius: $radius-full;
-  background: #FFFFFF;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  color: $color-text-secondary;
-  font-size: 0.9rem;
-  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: $radius-xs;
+  background: transparent;
+  border: 1px solid $color-border;
+  color: $color-text-muted;
+  font-size: 0.88rem;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: $shadow-sm;
   transition: all $transition-fast;
 
   &:hover {
-    background: #F1F4FA;
-    color: $color-primary;
+    background: $color-primary;
+    border-color: $color-primary;
+    color: #FFFFFF;
   }
 
   &--active {
     background: $color-primary;
     border-color: $color-primary;
     color: #FFFFFF;
+    font-weight: 600;
     box-shadow: $shadow-button-primary;
 
     &:hover {
-      background: $color-primary;
-      color: #FFFFFF;
+      background: $color-primary-dark;
+      border-color: $color-primary-dark;
     }
+  }
+
+  &:focus-visible {
+    outline: 3px solid $color-secondary;
+    outline-offset: 3px;
   }
 }
 
 .event-card {
   background: #FFFFFF;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: $radius-lg;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
   overflow: hidden;
   box-shadow: $shadow-sm;
   transition: all $transition-normal;
   display: flex;
   flex-direction: column;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   &:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
     border-color: $color-border-hover;
     box-shadow: $shadow-md;
 
     .event-card__media img {
-      transform: scale(1.08);
+      transform: scale(1.055);
     }
   }
 
@@ -143,12 +151,23 @@
   }
 
   &__category {
-    font-size: 0.75rem;
+    font-size: 0.74rem;
     font-weight: 700;
-    color: $color-secondary;
+    color: $color-secondary-dark;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     margin-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    &::before {
+      content: "";
+      width: 14px;
+      height: 2px;
+      background: $color-secondary;
+      display: inline-block;
+    }
   }
 
   &__title {

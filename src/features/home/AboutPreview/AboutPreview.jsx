@@ -35,7 +35,7 @@ export const AboutPreview = () => {
           </p>
 
           <div className="about-preview__action">
-            <Button to="/enquiry" variant="secondary" size="lg" icon={<FaArrowRight />} style={{ background: '#081735', color: '#FFFFFF', border: 'none' }}>
+            <Button to="/enquiry" variant="primary" size="lg" icon={<FaArrowRight />}>
               Book Now
             </Button>
           </div>
